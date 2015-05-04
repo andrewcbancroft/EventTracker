@@ -7,12 +7,23 @@
 //
 
 import UIKit
+import EventKit
 
 class ViewController: UIViewController {
 
+    let eventStore = EKEventStore()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        eventStore.requestAccessToEntityType(EKEntityTypeEvent, completion: {
+            (accessGranted: Bool, error: NSError!) in
+            
+            if accessGranted == true {
+                // take action based on the granted permission
+            }
+        })
     }
 
     override func didReceiveMemoryWarning() {
