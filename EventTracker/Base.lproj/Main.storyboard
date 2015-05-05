@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="EventTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,8 +15,50 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H7v-7X-s66" userLabel="NeedPermissionView">
+                                <rect key="frame" x="0.0" y="52" width="600" height="362"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="skw-hz-AhG">
+                                        <rect key="frame" x="243" y="246" width="99" height="30"/>
+                                        <state key="normal" title="Go to Settings">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="goToSettingsButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sm7-bS-EFL"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This application needs permission to access your calendar in order to work." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zcz-bV-4k4">
+                                        <rect key="frame" x="0.0" y="85" width="600" height="117"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="117" id="gFl-jJ-Ztd"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="zcz-bV-4k4" secondAttribute="centerX" id="GJp-03-vEx"/>
+                                    <constraint firstItem="skw-hz-AhG" firstAttribute="centerX" secondItem="zcz-bV-4k4" secondAttribute="centerX" constant="-7.5" id="Q6W-cu-juF"/>
+                                    <constraint firstItem="skw-hz-AhG" firstAttribute="top" secondItem="zcz-bV-4k4" secondAttribute="bottom" constant="44" id="ebA-SV-0Lv"/>
+                                    <constraint firstAttribute="height" constant="362" id="ehf-ED-hms"/>
+                                    <constraint firstItem="zcz-bV-4k4" firstAttribute="top" secondItem="H7v-7X-s66" secondAttribute="top" constant="85" id="hqf-nb-m1G"/>
+                                    <constraint firstAttribute="width" secondItem="zcz-bV-4k4" secondAttribute="width" id="j1y-et-eNL"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="H7v-7X-s66" secondAttribute="centerX" id="TNp-Q0-bPh"/>
+                            <constraint firstItem="H7v-7X-s66" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="lUS-Uj-zkT"/>
+                            <constraint firstAttribute="centerY" secondItem="H7v-7X-s66" secondAttribute="centerY" constant="67" id="tvz-cc-Noe"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="needPermissionView" destination="H7v-7X-s66" id="WrG-BN-S70"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

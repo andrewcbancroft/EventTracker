@@ -13,6 +13,8 @@ class ViewController: UIViewController {
 
     let eventStore = EKEventStore()
     
+	@IBOutlet weak var needPermissionView: UIView!
+	
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -22,7 +24,9 @@ class ViewController: UIViewController {
             
             if accessGranted == true {
                 // take action based on the granted permission
-            }
+			} else {
+				self.needPermissionView.fadeIn()
+			}
         })
     }
 
@@ -31,6 +35,9 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
+	@IBAction func goToSettingsButtonTapped(sender: UIButton) {
+		let openSettingsUrl = NSURL(string: UIApplicationOpenSettingsURLString)
+		UIApplication.sharedApplication().openURL(openSettingsUrl!)
+	}
 }
 
