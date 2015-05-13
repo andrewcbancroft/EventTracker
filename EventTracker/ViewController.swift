@@ -22,9 +22,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
-        checkCalendarAuthorizationStatus()
     }
 	
+    override func viewWillAppear(animated: Bool) {
+        checkCalendarAuthorizationStatus()
+    }
+    
 	func checkCalendarAuthorizationStatus() {
 		let status = EKEventStore.authorizationStatusForEntityType(EKEntityTypeEvent)
 		
