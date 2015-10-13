@@ -29,7 +29,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func checkCalendarAuthorizationStatus() {
-        let status = EKEventStore.authorizationStatusForEntityType(EKEntityTypeEvent)
+        let status = EKEventStore.authorizationStatusForEntityType(EKEntityType.Event)
         
         switch (status) {
         case EKAuthorizationStatus.NotDetermined:
@@ -42,15 +42,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         case EKAuthorizationStatus.Restricted, EKAuthorizationStatus.Denied:
             // We need to help them give us permission
             needPermissionView.fadeIn()
-        default:
-            let alert = UIAlertView(title: "Privacy Warning", message: "You have not granted permission for this app to access your Calendar", delegate: nil, cancelButtonTitle: "OK")
-            alert.show()
         }
     }
     
     func requestAccessToCalendar() {
-        eventStore.requestAccessToEntityType(EKEntityTypeEvent, completion: {
-            (accessGranted: Bool, error: NSError!) in
+        eventStore.requestAccessToEntityType(EKEntityType.Event, completion: {
+            (accessGranted: Bool, error: NSError?) in
             
             if accessGranted == true {
                 dispatch_async(dispatch_get_main_queue(), {
@@ -66,7 +63,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func loadCalendars() {
-        self.calendars = eventStore.calendarsForEntityType(EKEntityTypeEvent) as? [EKCalendar]
+        self.calendars = eventStore.calendarsForEntityType(EKEntityType.Event)
     }
     
     func refreshTableView() {
@@ -89,7 +86,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("basicCell") as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("basicCell")!
         
         if let calendars = self.calendars {
             let calendarName = calendars[indexPath.row].title

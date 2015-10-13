@@ -159,6 +159,8 @@
 		C3E38CAB1AF7E5D40020EB86 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "Andrew Bancroft";
 				TargetAttributes = {
