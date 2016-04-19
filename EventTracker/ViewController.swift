@@ -9,7 +9,7 @@
 import UIKit
 import EventKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CalendarAddedDelegate {
     
     let eventStore = EKEventStore()
     
@@ -20,6 +20,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         // Do any additional setup after loading the view, typically from a nib.
         
     }
@@ -96,6 +97,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         
         return cell
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let destinationVC = segue.destinationViewController as! UINavigationController
+        let addCalendarVC = destinationVC.viewControllers[0] as! AddCalendarViewController
+        addCalendarVC.delegate = self
+    }
+    
+    // MARK: Calendar Added Delegate
+    func calendarDidAdd() {
+        loadCalendars()
+        refreshTableView()
     }
 }
 

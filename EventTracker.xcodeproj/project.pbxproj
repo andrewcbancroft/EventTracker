@@ -13,6 +13,8 @@
 		C3E38CC01AF7E5D40020EB86 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3E38CBF1AF7E5D40020EB86 /* Images.xcassets */; };
 		C3E38CC31AF7E5D40020EB86 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3E38CC11AF7E5D40020EB86 /* LaunchScreen.xib */; };
 		C3E38CCF1AF7E5D40020EB86 /* EventTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E38CCE1AF7E5D40020EB86 /* EventTrackerTests.swift */; };
+		C3F3A4931CC69EEA00B35A27 /* AddCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F3A4921CC69EEA00B35A27 /* AddCalendarViewController.swift */; };
+		C3F3A4951CC6A62A00B35A27 /* CalendarAddedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F3A4941CC6A62A00B35A27 /* CalendarAddedDelegate.swift */; };
 		F2FE1C091AF8746D002A3F21 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FE1C081AF8746D002A3F21 /* UIViewExtensions.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +39,8 @@
 		C3E38CC81AF7E5D40020EB86 /* EventTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EventTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3E38CCD1AF7E5D40020EB86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C3E38CCE1AF7E5D40020EB86 /* EventTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTrackerTests.swift; sourceTree = "<group>"; };
+		C3F3A4921CC69EEA00B35A27 /* AddCalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCalendarViewController.swift; sourceTree = "<group>"; };
+		C3F3A4941CC6A62A00B35A27 /* CalendarAddedDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarAddedDelegate.swift; sourceTree = "<group>"; };
 		F2FE1C081AF8746D002A3F21 /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,6 +85,8 @@
 			children = (
 				C3E38CB81AF7E5D40020EB86 /* AppDelegate.swift */,
 				C3E38CBA1AF7E5D40020EB86 /* ViewController.swift */,
+				C3F3A4921CC69EEA00B35A27 /* AddCalendarViewController.swift */,
+				C3F3A4941CC6A62A00B35A27 /* CalendarAddedDelegate.swift */,
 				F2FE1C081AF8746D002A3F21 /* UIViewExtensions.swift */,
 				C3E38CBC1AF7E5D40020EB86 /* Main.storyboard */,
 				C3E38CBF1AF7E5D40020EB86 /* Images.xcassets */,
@@ -217,7 +223,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3F3A4931CC69EEA00B35A27 /* AddCalendarViewController.swift in Sources */,
 				C3E38CBB1AF7E5D40020EB86 /* ViewController.swift in Sources */,
+				C3F3A4951CC6A62A00B35A27 /* CalendarAddedDelegate.swift in Sources */,
 				F2FE1C091AF8746D002A3F21 /* UIViewExtensions.swift in Sources */,
 				C3E38CB91AF7E5D40020EB86 /* AppDelegate.swift in Sources */,
 			);
