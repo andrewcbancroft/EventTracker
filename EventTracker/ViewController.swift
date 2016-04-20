@@ -10,9 +10,7 @@ import UIKit
 import EventKit
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CalendarAddedDelegate {
-    
-    let eventStore = EKEventStore()
-    
+	
     @IBOutlet weak var needPermissionView: UIView!
     @IBOutlet weak var calendarsTableView: UITableView!
     
@@ -20,15 +18,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+		checkCalendarAuthorizationStatus()
         // Do any additional setup after loading the view, typically from a nib.
         
     }
     
     override func viewWillAppear(animated: Bool) {
-        checkCalendarAuthorizationStatus()
+		checkCalendarAuthorizationStatus()
     }
-    
+	
     func checkCalendarAuthorizationStatus() {
         let status = EKEventStore.authorizationStatusForEntityType(EKEntityType.Event)
         
@@ -47,7 +45,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func requestAccessToCalendar() {
-        eventStore.requestAccessToEntityType(EKEntityType.Event, completion: {
+        EKEventStore().requestAccessToEntityType(EKEntityType.Event, completion: {
             (accessGranted: Bool, error: NSError?) in
             
             if accessGranted == true {
@@ -64,7 +62,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func loadCalendars() {
-        self.calendars = eventStore.calendarsForEntityType(EKEntityType.Event)
+		self.calendars = EKEventStore().calendarsForEntityType(EKEntityType.Event).sort() { (cal1, cal2) -> Bool in
+			return cal1.title < cal2.title
+		}
     }
     
     func refreshTableView() {
@@ -105,10 +105,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         addCalendarVC.delegate = self
     }
     
-    // MARK: Calendar Added Delegate
-    func calendarDidAdd() {
-        loadCalendars()
-        refreshTableView()
-    }
+	// MARK: Calendar Added Delegate
+	func calendarDidAdd() {
+		self.loadCalendars()
+		self.refreshTableView()
+	}
 }
 
