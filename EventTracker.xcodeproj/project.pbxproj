@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C3B8EA3A1CCFDB7900EE0C9D /* SegueIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B8EA391CCFDB7900EE0C9D /* SegueIdentifiers.swift */; };
+		C3B8EA3C1CCFDFA700EE0C9D /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B8EA3B1CCFDFA700EE0C9D /* EventsViewController.swift */; };
 		C3E38CB91AF7E5D40020EB86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E38CB81AF7E5D40020EB86 /* AppDelegate.swift */; };
 		C3E38CBB1AF7E5D40020EB86 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E38CBA1AF7E5D40020EB86 /* ViewController.swift */; };
 		C3E38CBE1AF7E5D40020EB86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3E38CBC1AF7E5D40020EB86 /* Main.storyboard */; };
@@ -29,6 +31,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C3B8EA391CCFDB7900EE0C9D /* SegueIdentifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueIdentifiers.swift; sourceTree = "<group>"; };
+		C3B8EA3B1CCFDFA700EE0C9D /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		C3E38CB31AF7E5D40020EB86 /* EventTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EventTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3E38CB71AF7E5D40020EB86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C3E38CB81AF7E5D40020EB86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -87,7 +91,9 @@
 				C3E38CBA1AF7E5D40020EB86 /* ViewController.swift */,
 				C3F3A4921CC69EEA00B35A27 /* AddCalendarViewController.swift */,
 				C3F3A4941CC6A62A00B35A27 /* CalendarAddedDelegate.swift */,
+				C3B8EA3B1CCFDFA700EE0C9D /* EventsViewController.swift */,
 				F2FE1C081AF8746D002A3F21 /* UIViewExtensions.swift */,
+				C3B8EA391CCFDB7900EE0C9D /* SegueIdentifiers.swift */,
 				C3E38CBC1AF7E5D40020EB86 /* Main.storyboard */,
 				C3E38CBF1AF7E5D40020EB86 /* Images.xcassets */,
 				C3E38CC11AF7E5D40020EB86 /* LaunchScreen.xib */,
@@ -227,7 +233,9 @@
 				C3E38CBB1AF7E5D40020EB86 /* ViewController.swift in Sources */,
 				C3F3A4951CC6A62A00B35A27 /* CalendarAddedDelegate.swift in Sources */,
 				F2FE1C091AF8746D002A3F21 /* UIViewExtensions.swift in Sources */,
+				C3B8EA3C1CCFDFA700EE0C9D /* EventsViewController.swift in Sources */,
 				C3E38CB91AF7E5D40020EB86 /* AppDelegate.swift in Sources */,
+				C3B8EA3A1CCFDB7900EE0C9D /* SegueIdentifiers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

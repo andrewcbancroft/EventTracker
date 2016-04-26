@@ -100,9 +100,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let destinationVC = segue.destinationViewController as! UINavigationController
-        let addCalendarVC = destinationVC.viewControllers[0] as! AddCalendarViewController
-        addCalendarVC.delegate = self
+        if let identifier = segue.identifier {
+            switch identifier {
+            case SegueIdentifiers.showAddCalendarSegue:
+                let destinationVC = segue.destinationViewController as! UINavigationController
+                let addCalendarVC = destinationVC.viewControllers[0] as! AddCalendarViewController
+                addCalendarVC.delegate = self
+            case SegueIdentifiers.showEventsSegue:
+                let destinationVC = segue.destinationViewController as! EventsViewController
+                let selectedIndexPath = calendarsTableView.indexPathForSelectedRow!
+                
+                destinationVC.calendar = calendars?[selectedIndexPath.row]
+            default: break
+            }
+        }
     }
     
 	// MARK: Calendar Added Delegate
