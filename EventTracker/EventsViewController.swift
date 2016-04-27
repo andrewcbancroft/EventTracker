@@ -17,24 +17,29 @@ class EventsViewController: UIViewController, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
         loadEvents()
     }
     
     func loadEvents() {
+        // Create a date formatter instance to use for converting a string to a date
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
+        // Create start and end date NSDate instances to build a predicate for which events to select
         let startDate = dateFormatter.dateFromString("2016-01-01")
         let endDate = dateFormatter.dateFromString("2016-12-31")
         
         if let startDate = startDate, endDate = endDate {
             let eventStore = EKEventStore()
             
+            // Use an event store instance to create and properly configure an NSPredicate
             let eventsPredicate = eventStore.predicateForEventsWithStartDate(startDate, endDate: endDate, calendars: [calendar])
             
-            self.events = eventStore.eventsMatchingPredicate(eventsPredicate)
+            // Use the configured NSPredicate to find and return events in the store that match
+            self.events = eventStore.eventsMatchingPredicate(eventsPredicate).sort(){
+                (e1: EKEvent, e2: EKEvent) -> Bool in
+                return e1.startDate.compare(e2.startDate) == NSComparisonResult.OrderedAscending
+            }
         }
     }
     
