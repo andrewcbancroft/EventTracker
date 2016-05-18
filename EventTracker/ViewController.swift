@@ -107,10 +107,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 let addCalendarVC = destinationVC.viewControllers[0] as! AddCalendarViewController
                 addCalendarVC.delegate = self
             case SegueIdentifiers.showEventsSegue:
-                let destinationVC = segue.destinationViewController as! EventsViewController
+                let destinationVC = segue.destinationViewController as! UINavigationController
+                let eventsVC = destinationVC.viewControllers[0] as! EventsViewController
                 let selectedIndexPath = calendarsTableView.indexPathForSelectedRow!
                 
-                destinationVC.calendar = calendars?[selectedIndexPath.row]
+                eventsVC.calendar = calendars?[selectedIndexPath.row]
             default: break
             }
         }
