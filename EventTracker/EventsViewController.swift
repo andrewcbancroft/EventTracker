@@ -55,4 +55,12 @@ class EventsViewController: UIViewController, UITableViewDataSource {
         cell.textLabel?.text = events?[indexPath.row].title
         return cell
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let destinationVC = segue.destinationViewController as! UINavigationController
+            
+        let addEventVC = destinationVC.childViewControllers[0] as! AddEventViewController
+        
+        addEventVC.calendar = calendar
+    }
 }
