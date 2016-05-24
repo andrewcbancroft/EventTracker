@@ -9,11 +9,13 @@
 import UIKit
 import EventKit
 
-class EventsViewController: UIViewController, UITableViewDataSource {
+class EventsViewController: UIViewController, UITableViewDataSource, EventAddedDelegate {
     @IBOutlet weak var tableView: UITableView!
 
     var calendar: EKCalendar!
     var events: [EKEvent]?
+
+    @IBOutlet weak var eventsTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +36,11 @@ class EventsViewController: UIViewController, UITableViewDataSource {
             
             let eventsPredicate = eventStore.predicateForEventsWithStartDate(startDate, endDate: endDate, calendars: [calendar])
             
-            self.events = eventStore.eventsMatchingPredicate(eventsPredicate)
+            self.events = eventStore.eventsMatchingPredicate(eventsPredicate).sort {
+                (e1: EKEvent, e2: EKEvent) in
+                
+                return e1.startDate.compare(e2.startDate) == NSComparisonResult.OrderedAscending
+            }
         }
     }
     
@@ -53,14 +59,31 @@ class EventsViewController: UIViewController, UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("basicCell")!
         cell.textLabel?.text = events?[indexPath.row].title
+        cell.detailTextLabel?.text = formatDate(events?[indexPath.row].startDate)
         return cell
+    }
+    
+    func formatDate(date: NSDate?) -> String {
+        if let date = date {
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "MM/dd/yyyy"
+            return dateFormatter.stringFromDate(date)
+        }
+        
+        return ""
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let destinationVC = segue.destinationViewController as! UINavigationController
             
         let addEventVC = destinationVC.childViewControllers[0] as! AddEventViewController
-        
         addEventVC.calendar = calendar
+        addEventVC.delegate = self
+    }
+    
+    // MARK: Event Added Delegate
+    func eventDidAdd() {
+        self.loadEvents()
+        self.eventsTableView.reloadData()
     }
 }

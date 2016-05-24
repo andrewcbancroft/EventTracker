@@ -17,6 +17,8 @@ class AddEventViewController: UIViewController {
     @IBOutlet weak var eventStartDatePicker: UIDatePicker!
     @IBOutlet weak var eventEndDatePicker: UIDatePicker!
     
+    var delegate: EventAddedDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -47,6 +49,7 @@ class AddEventViewController: UIViewController {
             
             do {
                 try eventStore.saveEvent(newEvent, span: .ThisEvent, commit: true)
+                delegate?.eventDidAdd()
                 
                 self.dismissViewControllerAnimated(true, completion: nil)
             } catch {

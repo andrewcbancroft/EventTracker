@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C332DA4F1CECE0F200E2D738 /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C332DA4E1CECE0F200E2D738 /* AddEventViewController.swift */; };
+		C332DA511CF4C53E00E2D738 /* EventAddedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C332DA501CF4C53E00E2D738 /* EventAddedDelegate.swift */; };
 		C3B8EA3A1CCFDB7900EE0C9D /* SegueIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B8EA391CCFDB7900EE0C9D /* SegueIdentifiers.swift */; };
 		C3B8EA3C1CCFDFA700EE0C9D /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B8EA3B1CCFDFA700EE0C9D /* EventsViewController.swift */; };
 		C3E38CB91AF7E5D40020EB86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E38CB81AF7E5D40020EB86 /* AppDelegate.swift */; };
@@ -33,6 +34,7 @@
 
 /* Begin PBXFileReference section */
 		C332DA4E1CECE0F200E2D738 /* AddEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
+		C332DA501CF4C53E00E2D738 /* EventAddedDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventAddedDelegate.swift; sourceTree = "<group>"; };
 		C3B8EA391CCFDB7900EE0C9D /* SegueIdentifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueIdentifiers.swift; sourceTree = "<group>"; };
 		C3B8EA3B1CCFDFA700EE0C9D /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		C3E38CB31AF7E5D40020EB86 /* EventTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EventTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,6 +97,7 @@
 				C3F3A4941CC6A62A00B35A27 /* CalendarAddedDelegate.swift */,
 				C3B8EA3B1CCFDFA700EE0C9D /* EventsViewController.swift */,
 				C332DA4E1CECE0F200E2D738 /* AddEventViewController.swift */,
+				C332DA501CF4C53E00E2D738 /* EventAddedDelegate.swift */,
 				F2FE1C081AF8746D002A3F21 /* UIViewExtensions.swift */,
 				C3B8EA391CCFDB7900EE0C9D /* SegueIdentifiers.swift */,
 				C3E38CBC1AF7E5D40020EB86 /* Main.storyboard */,
@@ -237,6 +240,7 @@
 				C3E38CBB1AF7E5D40020EB86 /* ViewController.swift in Sources */,
 				C3F3A4951CC6A62A00B35A27 /* CalendarAddedDelegate.swift in Sources */,
 				F2FE1C091AF8746D002A3F21 /* UIViewExtensions.swift in Sources */,
+				C332DA511CF4C53E00E2D738 /* EventAddedDelegate.swift in Sources */,
 				C3B8EA3C1CCFDFA700EE0C9D /* EventsViewController.swift in Sources */,
 				C3E38CB91AF7E5D40020EB86 /* AppDelegate.swift in Sources */,
 				C3B8EA3A1CCFDB7900EE0C9D /* SegueIdentifiers.swift in Sources */,
