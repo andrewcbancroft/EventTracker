@@ -22,6 +22,20 @@ class AddEventViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        self.eventStartDatePicker.setDate(initialDatePickerValue(), animated: false)
+        self.eventEndDatePicker.setDate(initialDatePickerValue(), animated: false)
+    }
+    
+    func initialDatePickerValue() -> NSDate {
+        let calendarUnitFlags: NSCalendarUnit = [.Year, .Month, .Day, .Hour, .Minute, .Second]
+        
+        let dateComponents = NSCalendar.currentCalendar().components(calendarUnitFlags, fromDate: NSDate())
+        
+        dateComponents.hour = 0
+        dateComponents.minute = 0
+        dateComponents.second = 0
+        
+        return NSCalendar.currentCalendar().dateFromComponents(dateComponents)!
     }
     
     @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
