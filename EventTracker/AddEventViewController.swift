@@ -43,24 +43,20 @@ class AddEventViewController: UIViewController {
     }
     
     @IBAction func addEventButtonTapped(sender: UIBarButtonItem) {
-            // Create an Event Store instance
+        // Create an Event Store instance
         let eventStore = EKEventStore();
         
+        // Use Event Store to create a new calendar instance
         if let calendarForEvent = eventStore.calendarWithIdentifier((self.calendar.calendarIdentifier))
         {
-            // Use Event Store to create a new calendar instance
-            // Configure its title
             let newEvent = EKEvent(eventStore: eventStore)
             
-            // Probably want to prevent someone from saving a calendar
-            // if they don't type in a name...
             newEvent.calendar = calendarForEvent
             newEvent.title = self.eventNameTextField.text ?? "Some Event Name"
             newEvent.startDate = self.eventStartDatePicker.date
             newEvent.endDate = self.eventEndDatePicker.date
             
-            // Save the calendar using the Event Store instance
-            
+            // Save the event using the Event Store instance
             do {
                 try eventStore.saveEvent(newEvent, span: .ThisEvent, commit: true)
                 delegate?.eventDidAdd()
