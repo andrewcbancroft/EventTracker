@@ -47,7 +47,7 @@ class AddEventViewController: UIViewController {
         let eventStore = EKEventStore();
         
         // Use Event Store to create a new calendar instance
-        if let calendarForEvent = eventStore.calendarWithIdentifier((self.calendar.calendarIdentifier))
+        if let calendarForEvent = eventStore.calendarWithIdentifier(self.calendar.calendarIdentifier)
         {
             let newEvent = EKEvent(eventStore: eventStore)
             
