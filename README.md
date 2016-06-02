@@ -3,8 +3,7 @@
 ## Resources
 This repository contains an example XCode project for the following blog posts at [andrewcbancroft.com](http://www.andrewcbancroft.com):
 
-* [Beginner’s Guide to Event Kit in Swift – Requesting Permission](http://www.andrewcbancroft.com/2015/05/14/beginners-guide-to-eventkit-in-swift-requesting-permission/)
-* [Creating Calendars with Event Kit and Swift](https://www.andrewcbancroft.com/2015/06/17/creating-calendars-with-event-kit-and-swift/)
+* [Creating Calendar Events with Event Kit and Swift](https://www.andrewcbancroft.com/2016/06/02/creating-calendar-events-with-event-kit-and-swift/)
 
 Master contains all merged changes to the EventTracker example.
 
