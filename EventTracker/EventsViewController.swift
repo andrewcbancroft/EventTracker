@@ -25,30 +25,30 @@ class EventsViewController: UIViewController, UITableViewDataSource, EventAddedD
     }
     
     func loadEvents() {
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
-        let startDate = dateFormatter.dateFromString("2016-01-01")
-        let endDate = dateFormatter.dateFromString("2016-12-31")
+        let startDate = dateFormatter.date(from: "2016-01-01")
+        let endDate = dateFormatter.date(from: "2016-12-31")
         
-        if let startDate = startDate, endDate = endDate {
+        if let startDate = startDate, let endDate = endDate {
             let eventStore = EKEventStore()
             
-            let eventsPredicate = eventStore.predicateForEventsWithStartDate(startDate, endDate: endDate, calendars: [calendar])
+            let eventsPredicate = eventStore.predicateForEvents(withStart: startDate, end: endDate, calendars: [calendar])
             
-            self.events = eventStore.eventsMatchingPredicate(eventsPredicate).sort {
+            self.events = eventStore.events(matching: eventsPredicate).sorted {
                 (e1: EKEvent, e2: EKEvent) in
                 
-                return e1.startDate.compare(e2.startDate) == NSComparisonResult.OrderedAscending
+                return e1.startDate.compare(e2.startDate) == ComparisonResult.orderedAscending
             }
         }
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let events = events {
             return events.count
         }
@@ -56,25 +56,25 @@ class EventsViewController: UIViewController, UITableViewDataSource, EventAddedD
         return 0
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("basicCell")!
-        cell.textLabel?.text = events?[indexPath.row].title
-        cell.detailTextLabel?.text = formatDate(events?[indexPath.row].startDate)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "basicCell")!
+        cell.textLabel?.text = events?[(indexPath as NSIndexPath).row].title
+        cell.detailTextLabel?.text = formatDate(events?[(indexPath as NSIndexPath).row].startDate)
         return cell
     }
     
-    func formatDate(date: NSDate?) -> String {
+    func formatDate(_ date: Date?) -> String {
         if let date = date {
-            let dateFormatter = NSDateFormatter()
+            let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MM/dd/yyyy"
-            return dateFormatter.stringFromDate(date)
+            return dateFormatter.string(from: date)
         }
         
         return ""
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let destinationVC = segue.destinationViewController as! UINavigationController
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! UINavigationController
             
         let addEventVC = destinationVC.childViewControllers[0] as! AddEventViewController
         addEventVC.calendar = calendar

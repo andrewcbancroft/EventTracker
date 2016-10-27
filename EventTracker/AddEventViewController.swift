@@ -26,28 +26,28 @@ class AddEventViewController: UIViewController {
         self.eventEndDatePicker.setDate(initialDatePickerValue(), animated: false)
     }
     
-    func initialDatePickerValue() -> NSDate {
-        let calendarUnitFlags: NSCalendarUnit = [.Year, .Month, .Day, .Hour, .Minute, .Second]
+    func initialDatePickerValue() -> Date {
+        let calendarUnitFlags: NSCalendar.Unit = [.year, .month, .day, .hour, .minute, .second]
         
-        let dateComponents = NSCalendar.currentCalendar().components(calendarUnitFlags, fromDate: NSDate())
+        var dateComponents = (Calendar.current as NSCalendar).components(calendarUnitFlags, from: Date())
         
         dateComponents.hour = 0
         dateComponents.minute = 0
         dateComponents.second = 0
         
-        return NSCalendar.currentCalendar().dateFromComponents(dateComponents)!
+        return Calendar.current.date(from: dateComponents)!
     }
     
-    @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func addEventButtonTapped(sender: UIBarButtonItem) {
+    @IBAction func addEventButtonTapped(_ sender: UIBarButtonItem) {
         // Create an Event Store instance
         let eventStore = EKEventStore();
         
         // Use Event Store to create a new calendar instance
-        if let calendarForEvent = eventStore.calendarWithIdentifier(self.calendar.calendarIdentifier)
+        if let calendarForEvent = eventStore.calendar(withIdentifier: self.calendar.calendarIdentifier)
         {
             let newEvent = EKEvent(eventStore: eventStore)
             
@@ -58,16 +58,16 @@ class AddEventViewController: UIViewController {
             
             // Save the event using the Event Store instance
             do {
-                try eventStore.saveEvent(newEvent, span: .ThisEvent, commit: true)
+                try eventStore.save(newEvent, span: .thisEvent, commit: true)
                 delegate?.eventDidAdd()
                 
-                self.dismissViewControllerAnimated(true, completion: nil)
+                self.dismiss(animated: true, completion: nil)
             } catch {
-                let alert = UIAlertController(title: "Event could not save", message: (error as NSError).localizedDescription, preferredStyle: .Alert)
-                let OKAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                let alert = UIAlertController(title: "Event could not save", message: (error as NSError).localizedDescription, preferredStyle: .alert)
+                let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                 alert.addAction(OKAction)
                 
-                self.presentViewController(alert, animated: true, completion: nil)
+                self.present(alert, animated: true, completion: nil)
             }
         }
      }
