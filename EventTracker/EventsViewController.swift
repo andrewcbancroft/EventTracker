@@ -22,32 +22,32 @@ class EventsViewController: UIViewController, UITableViewDataSource {
     
     func loadEvents() {
         // Create a date formatter instance to use for converting a string to a date
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
         // Create start and end date NSDate instances to build a predicate for which events to select
-        let startDate = dateFormatter.dateFromString("2016-01-01")
-        let endDate = dateFormatter.dateFromString("2016-12-31")
+        let startDate = dateFormatter.date(from: "2016-01-01")
+        let endDate = dateFormatter.date(from: "2016-12-31")
         
-        if let startDate = startDate, endDate = endDate {
+        if let startDate = startDate, let endDate = endDate {
             let eventStore = EKEventStore()
             
             // Use an event store instance to create and properly configure an NSPredicate
-            let eventsPredicate = eventStore.predicateForEventsWithStartDate(startDate, endDate: endDate, calendars: [calendar])
+            let eventsPredicate = eventStore.predicateForEvents(withStart: startDate, end: endDate, calendars: [calendar])
             
             // Use the configured NSPredicate to find and return events in the store that match
-            self.events = eventStore.eventsMatchingPredicate(eventsPredicate).sort(){
+            self.events = eventStore.events(matching: eventsPredicate).sorted(){
                 (e1: EKEvent, e2: EKEvent) -> Bool in
-                return e1.startDate.compare(e2.startDate) == NSComparisonResult.OrderedAscending
+                return e1.startDate.compare(e2.startDate) == ComparisonResult.orderedAscending
             }
         }
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let events = events {
             return events.count
         }
@@ -55,9 +55,9 @@ class EventsViewController: UIViewController, UITableViewDataSource {
         return 0
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("basicCell")!
-        cell.textLabel?.text = events?[indexPath.row].title
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "basicCell")!
+        cell.textLabel?.text = events?[(indexPath as NSIndexPath).row].title
         return cell
     }
 }
