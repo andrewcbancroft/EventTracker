@@ -24,38 +24,38 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         checkCalendarAuthorizationStatus()
     }
     
     func checkCalendarAuthorizationStatus() {
-        let status = EKEventStore.authorizationStatusForEntityType(EKEntityType.Event)
+        let status = EKEventStore.authorizationStatus(for: EKEntityType.event)
         
         switch (status) {
-        case EKAuthorizationStatus.NotDetermined:
+        case EKAuthorizationStatus.notDetermined:
             // This happens on first-run
             requestAccessToCalendar()
-        case EKAuthorizationStatus.Authorized:
+        case EKAuthorizationStatus.authorized:
             // Things are in line with being able to show the calendars in the table view
             loadCalendars()
             refreshTableView()
-        case EKAuthorizationStatus.Restricted, EKAuthorizationStatus.Denied:
+        case EKAuthorizationStatus.restricted, EKAuthorizationStatus.denied:
             // We need to help them give us permission
             needPermissionView.fadeIn()
         }
     }
     
     func requestAccessToCalendar() {
-        eventStore.requestAccessToEntityType(EKEntityType.Event, completion: {
-            (accessGranted: Bool, error: NSError?) in
+        eventStore.requestAccess(to: EKEntityType.event, completion: {
+            (accessGranted: Bool, error: Error?) in
             
             if accessGranted == true {
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     self.loadCalendars()
                     self.refreshTableView()
                 })
             } else {
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     self.needPermissionView.fadeIn()
                 })
             }
@@ -63,20 +63,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func loadCalendars() {
-        self.calendars = eventStore.calendarsForEntityType(EKEntityType.Event)
+        self.calendars = eventStore.calendars(for: EKEntityType.event)
     }
     
     func refreshTableView() {
-        calendarsTableView.hidden = false
+        calendarsTableView.isHidden = false
         calendarsTableView.reloadData()
     }
     
-    @IBAction func goToSettingsButtonTapped(sender: UIButton) {
-        let openSettingsUrl = NSURL(string: UIApplicationOpenSettingsURLString)
-        UIApplication.sharedApplication().openURL(openSettingsUrl!)
+    @IBAction func goToSettingsButtonTapped(_ sender: UIButton) {
+        let openSettingsUrl = URL(string: UIApplicationOpenSettingsURLString)
+        UIApplication.shared.openURL(openSettingsUrl!)
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let calendars = self.calendars {
             return calendars.count
         }
@@ -85,11 +85,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("basicCell")!
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "basicCell")!
         
         if let calendars = self.calendars {
-            let calendarName = calendars[indexPath.row].title
+            let calendarName = calendars[(indexPath as NSIndexPath).row].title
             cell.textLabel?.text = calendarName
         } else {
             cell.textLabel?.text = "Unknown Calendar Name"
