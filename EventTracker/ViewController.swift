@@ -45,7 +45,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func requestAccessToCalendar() {
-        EKEventStore().requestAccess(to: EKEntityType.event, completion: {
+        EKEventStore().requestAccess(to: .event, completion: {
             (accessGranted: Bool, error: Error?) in
             
             if accessGranted == true {
