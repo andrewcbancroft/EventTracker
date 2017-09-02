@@ -25,15 +25,13 @@ class EventsViewController: UIViewController, UITableViewDataSource, EventAddedD
     }
     
     func loadEvents() {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
         
-        let startDate = dateFormatter.date(from: "2016-01-01")
-        let endDate = dateFormatter.date(from: "2016-12-31")
-        
-        if let startDate = startDate, let endDate = endDate {
+        let startDate = Date() // now
+        let endDate = Calendar.current.date(byAdding: .year, value: 1, to: Date())
+
+        if let endDate = endDate {
             let eventStore = EKEventStore()
-            
+
             let eventsPredicate = eventStore.predicateForEvents(withStart: startDate, end: endDate, calendars: [calendar])
             
             self.events = eventStore.events(matching: eventsPredicate).sorted {
