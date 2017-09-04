@@ -38,6 +38,8 @@
 	</array>
 	<key>NSCalendarsUsageDescription</key>
 	<string>We need access to your calendar in order to help you track events.</string>
+	<key>NSRemindersUsageDescription</key>
+	<string>Access reminders</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

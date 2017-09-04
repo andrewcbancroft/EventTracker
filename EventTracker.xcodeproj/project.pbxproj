@@ -19,6 +19,10 @@
 		C3E38CCF1AF7E5D40020EB86 /* EventTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E38CCE1AF7E5D40020EB86 /* EventTrackerTests.swift */; };
 		C3F3A4931CC69EEA00B35A27 /* AddCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F3A4921CC69EEA00B35A27 /* AddCalendarViewController.swift */; };
 		C3F3A4951CC6A62A00B35A27 /* CalendarAddedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F3A4941CC6A62A00B35A27 /* CalendarAddedDelegate.swift */; };
+		C8227DB11F5BACD300D191FC /* CalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8227DB01F5BACD300D191FC /* CalViewController.swift */; };
+		C8EE12B71F5BBB9100DEA598 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EE12B61F5BBB9100DEA598 /* CustomCell.swift */; };
+		C8EE12BB1F5CC62E00DEA598 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EE12BA1F5CC62E00DEA598 /* HeaderView.swift */; };
+		CA3E79984798E4F429C1B444 /* Pods_EventTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B68FDD6AF95090497EE61FA /* Pods_EventTracker.framework */; };
 		F2FE1C091AF8746D002A3F21 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FE1C081AF8746D002A3F21 /* UIViewExtensions.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +37,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		02126327D8820F5F7CE8BC61 /* Pods-EventTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EventTracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EventTracker/Pods-EventTracker.debug.xcconfig"; sourceTree = "<group>"; };
+		3328A2715EE003AA23F06430 /* Pods-EventTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EventTracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-EventTracker/Pods-EventTracker.release.xcconfig"; sourceTree = "<group>"; };
+		6B68FDD6AF95090497EE61FA /* Pods_EventTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EventTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C332DA4E1CECE0F200E2D738 /* AddEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
 		C332DA501CF4C53E00E2D738 /* EventAddedDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventAddedDelegate.swift; sourceTree = "<group>"; };
 		C3B8EA391CCFDB7900EE0C9D /* SegueIdentifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueIdentifiers.swift; sourceTree = "<group>"; };
@@ -49,6 +56,9 @@
 		C3E38CCE1AF7E5D40020EB86 /* EventTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTrackerTests.swift; sourceTree = "<group>"; };
 		C3F3A4921CC69EEA00B35A27 /* AddCalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCalendarViewController.swift; sourceTree = "<group>"; };
 		C3F3A4941CC6A62A00B35A27 /* CalendarAddedDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarAddedDelegate.swift; sourceTree = "<group>"; };
+		C8227DB01F5BACD300D191FC /* CalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalViewController.swift; sourceTree = "<group>"; };
+		C8EE12B61F5BBB9100DEA598 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		C8EE12BA1F5CC62E00DEA598 /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		F2FE1C081AF8746D002A3F21 /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -57,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA3E79984798E4F429C1B444 /* Pods_EventTracker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +81,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2CFD8269E035D16F55598361 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6B68FDD6AF95090497EE61FA /* Pods_EventTracker.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C3E38CAA1AF7E5D40020EB86 = {
 			isa = PBXGroup;
 			children = (
 				C3E38CB51AF7E5D40020EB86 /* EventTracker */,
 				C3E38CCB1AF7E5D40020EB86 /* EventTrackerTests */,
 				C3E38CB41AF7E5D40020EB86 /* Products */,
+				CE9060D6FBE35400E5B1E495 /* Pods */,
+				2CFD8269E035D16F55598361 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -104,6 +125,9 @@
 				C3E38CBF1AF7E5D40020EB86 /* Images.xcassets */,
 				C3E38CC11AF7E5D40020EB86 /* LaunchScreen.xib */,
 				C3E38CB61AF7E5D40020EB86 /* Supporting Files */,
+				C8227DB01F5BACD300D191FC /* CalViewController.swift */,
+				C8EE12B61F5BBB9100DEA598 /* CustomCell.swift */,
+				C8EE12BA1F5CC62E00DEA598 /* HeaderView.swift */,
 			);
 			path = EventTracker;
 			sourceTree = "<group>";
@@ -133,6 +157,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		CE9060D6FBE35400E5B1E495 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				02126327D8820F5F7CE8BC61 /* Pods-EventTracker.debug.xcconfig */,
+				3328A2715EE003AA23F06430 /* Pods-EventTracker.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -140,9 +173,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C3E38CD21AF7E5D40020EB86 /* Build configuration list for PBXNativeTarget "EventTracker" */;
 			buildPhases = (
+				3AD9F1771921FB733D0C0D48 /* [CP] Check Pods Manifest.lock */,
 				C3E38CAF1AF7E5D40020EB86 /* Sources */,
 				C3E38CB01AF7E5D40020EB86 /* Frameworks */,
 				C3E38CB11AF7E5D40020EB86 /* Resources */,
+				F7F18C6A4C2C867B155A7119 /* [CP] Embed Pods Frameworks */,
+				53A4FA23026756075A59D001 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -179,7 +215,7 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Andrew Bancroft";
 				TargetAttributes = {
 					C3E38CB21AF7E5D40020EB86 = {
@@ -232,16 +268,67 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3AD9F1771921FB733D0C0D48 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		53A4FA23026756075A59D001 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EventTracker/Pods-EventTracker-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F7F18C6A4C2C867B155A7119 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EventTracker/Pods-EventTracker-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C3E38CAF1AF7E5D40020EB86 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				C3F3A4931CC69EEA00B35A27 /* AddCalendarViewController.swift in Sources */,
+				C8227DB11F5BACD300D191FC /* CalViewController.swift in Sources */,
+				C8EE12B71F5BBB9100DEA598 /* CustomCell.swift in Sources */,
 				C332DA4F1CECE0F200E2D738 /* AddEventViewController.swift in Sources */,
 				C3E38CBB1AF7E5D40020EB86 /* ViewController.swift in Sources */,
 				C3F3A4951CC6A62A00B35A27 /* CalendarAddedDelegate.swift in Sources */,
 				F2FE1C091AF8746D002A3F21 /* UIViewExtensions.swift in Sources */,
+				C8EE12BB1F5CC62E00DEA598 /* HeaderView.swift in Sources */,
 				C332DA511CF4C53E00E2D738 /* EventAddedDelegate.swift in Sources */,
 				C3B8EA3C1CCFDFA700EE0C9D /* EventsViewController.swift in Sources */,
 				C3E38CB91AF7E5D40020EB86 /* AppDelegate.swift in Sources */,
@@ -300,8 +387,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -346,8 +435,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -366,6 +457,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -373,6 +465,7 @@
 		};
 		C3E38CD31AF7E5D40020EB86 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 02126327D8820F5F7CE8BC61 /* Pods-EventTracker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = EventTracker/Info.plist;
@@ -385,6 +478,7 @@
 		};
 		C3E38CD41AF7E5D40020EB86 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3328A2715EE003AA23F06430 /* Pods-EventTracker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = EventTracker/Info.plist;
