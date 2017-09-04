@@ -11,4 +11,5 @@ import Foundation
 struct SegueIdentifiers {
     static let showAddCalendarSegue = "showAddCalendar"
     static let showEventsSegue = "showEvents"
+    static let showAsCalendarSegue = "showAsCalendar"
 }
