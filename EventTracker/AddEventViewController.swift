@@ -12,6 +12,7 @@ import EventKit
 class AddEventViewController: UIViewController {
 
     var calendar: EKCalendar!
+    var eventStore : EKEventStore!
 
     @IBOutlet weak var eventNameTextField: UITextField!
     @IBOutlet weak var eventStartDatePicker: UIDatePicker!
@@ -21,7 +22,7 @@ class AddEventViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        eventStore = EKEventStore()
         self.eventStartDatePicker.setDate(initialDatePickerValue(), animated: false)
         self.eventEndDatePicker.setDate(initialDatePickerValue(), animated: false)
     }
@@ -44,21 +45,27 @@ class AddEventViewController: UIViewController {
     
     @IBAction func addEventButtonTapped(_ sender: UIBarButtonItem) {
         // Create an Event Store instance
-        let eventStore = EKEventStore();
-        
+        //let eventStore = EKEventStore();
+        print("adding event to \(calendar.title)")
         // Use Event Store to create a new calendar instance
-        if let calendarForEvent = eventStore.calendar(withIdentifier: self.calendar.calendarIdentifier)
-        {
-            let newEvent = EKEvent(eventStore: eventStore)
-            
-            newEvent.calendar = calendarForEvent
+        //if let calendarForEvent = calendar {
+        //if let calendarForEvent = eventStore.calendar(withIdentifier: self.calendar.calendarIdentifier)
+            print("there is a calendar")
+            let newEvent = EKEvent(eventStore: self.eventStore)
+            newEvent.calendar = calendar
             newEvent.title = self.eventNameTextField.text ?? "Some Event Name"
             newEvent.startDate = self.eventStartDatePicker.date
             newEvent.endDate = self.eventEndDatePicker.date
-            
+            print(newEvent.calendar.title)
+            print(newEvent.title)
+            print(newEvent.startDate)
+            print(newEvent.endDate)
+
             // Save the event using the Event Store instance
             do {
-                try eventStore.save(newEvent, span: .thisEvent, commit: true)
+                print("trying to save")
+                try self.eventStore.save(newEvent, span: .thisEvent)
+
                 delegate?.eventDidAdd()
                 
                 self.dismiss(animated: true, completion: nil)
@@ -69,6 +76,6 @@ class AddEventViewController: UIViewController {
                 
                 self.present(alert, animated: true, completion: nil)
             }
-        }
+        //}
      }
 }
