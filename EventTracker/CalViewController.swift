@@ -10,7 +10,7 @@ import UIKit
 import EventKit
 import JTAppleCalendar
 
-class CalViewController: UIViewController, JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSource {
+class CalViewController: UIViewController, JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSource, UITableViewDelegate, UITableViewDataSource {
 
     // MARK: - Properties
     var calendar: EKCalendar!
@@ -18,13 +18,15 @@ class CalViewController: UIViewController, JTAppleCalendarViewDelegate, JTAppleC
     var datesWithEvents: [Date]?
     let todaysDate = Date()
     var eventsToShow : [String: [EKEvent]] = [:] // date: events
-    var eventswTitles : [String: String] = [:]
+    var eventswTitles : [String: [String]] = [:]
+    var eventsInDay: [String] = ["Free - No Events"] // for table
 
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var calCollectionView: JTAppleCalendarView!
     @IBOutlet weak var testLabel: UILabel!
 
+    @IBOutlet weak var dayTable: UITableView!
     let formatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy MM dd"
@@ -42,7 +44,6 @@ class CalViewController: UIViewController, JTAppleCalendarViewDelegate, JTAppleC
         calCollectionView.visibleDates { dateSegment in
             self.setDateSegment(dateSegment : dateSegment)
         }
-
         eventsToShow = getEventsToShow(events: events)
         print(eventsToShow.keys)
         eventswTitles = getEventsTitles(events: events)
@@ -50,15 +51,9 @@ class CalViewController: UIViewController, JTAppleCalendarViewDelegate, JTAppleC
 
         self.calCollectionView.reloadData()
 
-        
+        dayTable.delegate = self
+        dayTable.dataSource = self
 
-//        calCollectionView.allowsMultipleSelection = true
-//        if events != nil{
-//            for event in events! {
-//                datesWithEvents.append(event.startDate)
-//            }
-//            calCollectionView.showActiveDates(datesWithEvents)
-//        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -94,7 +89,6 @@ class CalViewController: UIViewController, JTAppleCalendarViewDelegate, JTAppleC
                 } else {
                     dict[edate] = [event]
                 }
-
             }
             return dict
         } else {
@@ -102,13 +96,30 @@ class CalViewController: UIViewController, JTAppleCalendarViewDelegate, JTAppleC
         }
     }
 
-    func getEventsTitles(events: [EKEvent]?) -> [String: String]{
+    func prepareEventTable(dateString: String) -> [String] {
+        print("looking up \(dateString)")
+        var daysList = [String]()
+        if eventswTitles[dateString] != nil{
+            daysList = eventswTitles[dateString]!
+        } else {
+            daysList = ["Free - No Events"]
+        }
+        print(daysList)
+        return daysList
+    }
+
+    func getEventsTitles(events: [EKEvent]?) -> [String: [String]]{
         if events != nil{
             formatter.dateFormat = "yyyy MM dd"
-            var dict = [String: String]()
+            var dict = [String: [String]]()
             for event in events!{
                 let edate = formatter.string(from: event.startDate)
-                dict[edate] = event.title
+                if dict[edate] != nil {
+                    // there is already an event on this date
+                    dict[edate]! += [event.title]
+                } else {
+                    dict[edate] = [event.title]
+                }
             }
             return dict
         } else {
@@ -152,10 +163,7 @@ class CalViewController: UIViewController, JTAppleCalendarViewDelegate, JTAppleC
         if state.isSelected{
             cell.highlightCircle.isHidden = false
             cell.bounce()
-            let makelabel = "Selected: \(state.day), \(state.text)"
-            setupLabel(info: makelabel)
-            //setupLabel(info: cell.dateLabel.text!)
-            //print(state.day)
+
         }else{
             cell.highlightCircle.isHidden = state.isSelected ? false : true
         }
@@ -185,6 +193,7 @@ class CalViewController: UIViewController, JTAppleCalendarViewDelegate, JTAppleC
     }
 
 
+
     // MARK: - JTAppleCalendar Methods
 
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
@@ -210,6 +219,14 @@ class CalViewController: UIViewController, JTAppleCalendarViewDelegate, JTAppleC
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         guard let cell = cell as? CustomCell else {return}
         configureCell(cell: cell, state: cellState)
+        let makelabel = "Selected: \(cellState.day), \(cellState.text)"
+        setupLabel(info: makelabel)
+        //setupLabel(info: cell.dateLabel.text!)
+        //print(state.day)
+        formatter.dateFormat = "yyyy MM dd"
+        eventsInDay = prepareEventTable(dateString: formatter.string(from: cellState.date))
+        print("found eventsInDay: \(eventsInDay)")
+        dayTable.reloadData()
     }
 
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
@@ -230,6 +247,26 @@ class CalViewController: UIViewController, JTAppleCalendarViewDelegate, JTAppleC
     func calendarSizeForMonths(_ calendar: JTAppleCalendarView?) -> MonthSize? {
         return MonthSize(defaultSize: 50)
     }
+
+    // MARK: - TableViewDelegate Methods
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("Trying to show: \(eventsInDay.count) items")
+        return eventsInDay.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "dayCell")!
+        cell.textLabel?.text = eventsInDay[indexPath.row]
+        return cell
+    }
+
+
+    
 
 } // end of CalViewController
 
